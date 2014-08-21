@@ -3,11 +3,10 @@
   "version": "1.0.1",
   "repository": "stephenplusplus/pop",
   "description": "Pop dependencies into your functions.",
-  "main": "index.js",
   "author": "Stephen Sawchuk <sawchuk@gmail.com> (http://stephenplusplus.com)",
   "license": "MIT",
   "scripts": {
-    "browser": "a=$npm_package_name; browserify -r ./index:$a -s $a index.js -o browser.js",
+    "browser": "browserify -s $npm_package_name -o browser.js .",
     "test": "mocha"
   },
   "dependencies": {
@@ -18,7 +17,6 @@
     "mocha": "^1.21.4"
   },
   "files": [
-    "browser.js",
     "index.js",
     "LICENSE"
   ],
