@@ -31,10 +31,6 @@ function isRegistering(name) {
   return typeof name === 'string';
 }
 
-function trim(str) {
-  return str.trim();
-}
-
 function getDep(name) {
   if (!name) {
     throw new Error('No dependencies specified?');
