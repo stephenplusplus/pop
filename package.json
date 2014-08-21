@@ -9,6 +9,9 @@
     "browser": "a=$npm_package_name; browserify -r ./index:$a -s $a index.js -o browser.js",
     "test": "mocha"
   },
+  "dependencies": {
+    "fn-args": "^1.0.0"
+  },
   "devDependencies": {
     "browserify": "^5.10.1",
     "mocha": "^1.21.4"
