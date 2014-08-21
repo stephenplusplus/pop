@@ -1,6 +1,6 @@
 {
   "name": "pop-it",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "stephenplusplus/pop",
   "description": "Pop dependencies into your functions.",
   "main": "index.js",
