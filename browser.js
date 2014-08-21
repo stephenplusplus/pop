@@ -21,7 +21,7 @@ module.exports = function (fn) {
 	}) : [];
 };
 
-},{}],"pop-it":[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 'use strict';
 
 var fnArgs = require('fn-args');
@@ -68,5 +68,5 @@ function pop(name, value) {
 
 module.exports = pop;
 
-},{"fn-args":1}]},{},["pop-it"])("pop-it")
+},{"fn-args":1}]},{},[2])(2)
 });
