@@ -1,6 +1,7 @@
 {
   "name": "pop-it",
   "version": "1.0.0",
+  "repository": "stephenplusplus/pop",
   "description": "Pop dependencies into your functions.",
   "main": "index.js",
   "author": "Stephen Sawchuk <sawchuk@gmail.com> (http://stephenplusplus.com)",
