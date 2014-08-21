@@ -1,6 +1,6 @@
 {
   "name": "pop-it",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": "stephenplusplus/pop",
   "description": "Pop dependencies into your functions.",
   "author": "Stephen Sawchuk <sawchuk@gmail.com> (http://stephenplusplus.com)",
