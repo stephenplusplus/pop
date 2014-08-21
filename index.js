@@ -1,7 +1,7 @@
 'use strict';
 
+var fnArgs = require('fn-args');
 var poppies = {};
-var DEP_REGEX = /function\s*\(([^\)]*)/;
 
 function isRegistering(name) {
   return typeof name === 'string';
@@ -25,14 +25,6 @@ function getDep(name) {
   }
 }
 
-function getDeps(fn) {
-  var deps = [];
-  if (DEP_REGEX.test(fn.toString())) {
-    deps = fn.toString().match(DEP_REGEX)[1].split(',').map(trim).map(getDep);
-  }
-  return deps;
-}
-
 function register(name, value, context) {
   poppies[name] = {
     value: value,
@@ -50,7 +42,7 @@ function pop(name, value) {
   var context = arguments[arguments.length - 1];
 
   return function () {
-    return fn.apply(context, getDeps(fn));
+    return fn.apply(context, fnArgs(fn).map(getDep));
   };
 }
 

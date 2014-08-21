@@ -1,5 +1,5 @@
-var pop = require('pop');
 var assert = require('assert');
+var pop = require('./');
 
 describe('pop', function () {
   it('should inject string', function (done) {

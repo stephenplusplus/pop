@@ -1,6 +1,31 @@
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.pop=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"pop":[function(require,module,exports){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.popIt=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+module.exports = function (fn) {
+	if (typeof fn !== 'function') {
+		throw new TypeError('Expected a function');
+	}
+
+	if (fn.length === 0) {
+		return [];
+	}
+
+	// from https://github.com/jrburke/requirejs
+	var reComments = /(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg;
+
+	var reFnArgs = /^function\s*[^(]*\(([^)]+)\)/;
+
+	var match = reFnArgs.exec(fn.toString().replace(reComments, ''));
+
+	return match ? match[1].split(',').map(function (el) {
+		return el.trim();
+	}) : [];
+};
+
+},{}],"pop-it":[function(require,module,exports){
+'use strict';
+
+var fnArgs = require('fn-args');
 var poppies = {};
-var DEP_REGEX = /function\s*\(([^\)]*)/;
 
 function isRegistering(name) {
   return typeof name === 'string';
@@ -24,14 +49,6 @@ function getDep(name) {
   }
 }
 
-function getDeps(fn) {
-  var deps = [];
-  if (DEP_REGEX.test(fn.toString())) {
-    deps = fn.toString().match(DEP_REGEX)[1].split(',').map(trim).map(getDep);
-  }
-  return deps;
-}
-
 function register(name, value, context) {
   poppies[name] = {
     value: value,
@@ -49,11 +66,11 @@ function pop(name, value) {
   var context = arguments[arguments.length - 1];
 
   return function () {
-    return fn.apply(context, getDeps(fn));
+    return fn.apply(context, fnArgs(fn).map(getDep));
   };
 }
 
 module.exports = pop;
 
-},{}]},{},["pop"])("pop")
+},{"fn-args":1}]},{},["pop-it"])("pop-it")
 });
