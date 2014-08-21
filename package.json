@@ -1,0 +1,27 @@
+{
+  "name": "pop-it",
+  "version": "0.0.0",
+  "description": "Pop dependencies into your functions.",
+  "main": "index.js",
+  "author": "Stephen Sawchuk <sawchuk@gmail.com> (http://stephenplusplus.com)",
+  "license": "MIT",
+  "scripts": {
+    "browser": "a=$npm_package_name; browserify -r ./index:$a -s $a index.js -o browser.js",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "browserify": "^5.10.1",
+    "mocha": "^1.21.4"
+  },
+  "files": [
+    "browser.js",
+    "index.js",
+    "LICENSE"
+  ],
+  "keywords": [
+    "angular",
+    "dependency",
+    "injection",
+    "pop"
+  ]
+}
