@@ -6,7 +6,7 @@
   "author": "Stephen Sawchuk <sawchuk@gmail.com> (http://stephenplusplus.com)",
   "license": "MIT",
   "scripts": {
-    "browser": "browserify -s $npm_package_name -o browser.js .",
+    "browser": "browserify -s pop -o browser.js .",
     "test": "mocha"
   },
   "dependencies": {
